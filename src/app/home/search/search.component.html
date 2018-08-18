@@ -1,0 +1,30 @@
+<div *ngIf='showSearchBox else filterTemplate'>
+  <mat-form-field>
+    <input matInput type='text' placeholder='username' [(ngModel)]='username'>
+  </mat-form-field>
+  <button mat-icon-button (click)='showContents()'>
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
+<ng-template #filterTemplate>
+  <div>
+    <button mat-button (click)='resetAll()'>
+      Search Again
+    </button>
+  </div>
+</ng-template>
+<div>
+  <mat-table #table [dataSource]='dataSource'>
+    <ng-container matColumnDef='name'>
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef='let repo'>{{repo.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='pushed_at'>
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef='let repo'>{{repo.pushed_at}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+    <mat-row *matRowDef='let row;columns:displayedColumns'></mat-row>
+
+  </mat-table>
+</div>

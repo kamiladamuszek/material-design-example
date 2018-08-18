@@ -6,13 +6,19 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {MaterialModule} from './extramodules/material/material.module';
+import { HomeComponent } from './home/home.component';
+import {HttpClientModule} from '@angular/common/http';
+import { SearchComponent } from './home/search/search.component';
+import { FavoritesComponent } from './home/favorites/favorites.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    SearchComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +26,7 @@ import {MaterialModule} from './extramodules/material/material.module';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     MaterialModule
   ],
   providers: [],

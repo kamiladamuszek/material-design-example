@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   login = new Login();
 
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.login.username = this.loginForm.get('username').value; // inny sposób pobrania danych
     this.login.password = this.loginForm.value.password;
-    console.log(this.loginForm);
+    this.router.navigate(['./home']);
   }
 }
 
