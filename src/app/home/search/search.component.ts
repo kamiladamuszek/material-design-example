@@ -1,13 +1,15 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {GithubService} from '../../services/github.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Repository} from '../../interfaces/repository';
+import {LocalstorageService} from '../../services/localstorage.service';
+import {CommonDialogComponent} from '../../common-dialog/common-dialog.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [GithubService]
+  providers: [GithubService, LocalstorageService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
@@ -18,7 +20,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource(this.repositoryData);
   displayedColumns = ['name', 'pushed_at', 'actions_column'];
 
-  constructor(private github: GithubService) {
+  constructor(private github: GithubService, private localStorage: LocalstorageService, private dialog: MatDialog) {
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -61,4 +63,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
+
+  addToFavorites(repo) {
+    this.localStorage.addObjectToFavorites({name: repo.name, fullName: repo.full_name, url: repo.html_url});
+  }
+
+  showDialog(repo) {
+    const dialogRef: MatDialogRef<CommonDialogComponent> = this.dialog.open(CommonDialogComponent, {
+      height: '400px',
+      width: '600px'
+    });
+    dialogRef.componentInstance.repo = repo;
+  }
 }

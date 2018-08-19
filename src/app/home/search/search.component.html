@@ -29,10 +29,10 @@
     <ng-container matColumnDef="actions_column">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
       <mat-cell *matCellDef='let repo'>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="showDialog(repo)">
           <mat-icon>info</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="addToFavorites(repo)">
           <mat-icon>star</mat-icon>
         </button>
       </mat-cell>

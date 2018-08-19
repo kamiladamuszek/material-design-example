@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {ErrorService} from '../services/error.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [ErrorService]
 })
 export class LoginComponent implements OnInit {
 
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   login = new Login();
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private errorService: ErrorService) {
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.login.username = this.loginForm.get('username').value; // inny sposób pobrania danych
     this.login.password = this.loginForm.value.password;
-    this.router.navigate(['./home']);
+    this.errorService.showSnackBar('Login incorrect', 'Please check your credetials');
   }
 }
 

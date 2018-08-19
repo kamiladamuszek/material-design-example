@@ -7,10 +7,11 @@ import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './extramodules/material/material.module';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
-import { SearchComponent } from './home/search/search.component';
-import { FavoritesComponent } from './home/favorites/favorites.component';
+import {SearchComponent} from './home/search/search.component';
+import {FavoritesComponent} from './home/favorites/favorites.component';
+import {CommonDialogComponent} from './common-dialog/common-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
     LoginComponent,
     HomeComponent,
     SearchComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
     HttpClientModule,
     MaterialModule
   ],
+  entryComponents: [CommonDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
