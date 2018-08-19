@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {LocalstorageService} from '../../services/localstorage.service';
+
 
 @Component({
   selector: 'app-favorites',
@@ -11,14 +12,15 @@ export class FavoritesComponent implements OnInit {
 
   @Input() favorites: Array<Object>;
 
-  constructor(private localStorage: LocalstorageService) {
+  constructor(private localStorageService: LocalstorageService) {
   }
 
   ngOnInit() {
   }
 
   deleteFavoriteRecord(index: number) {
-    this.localStorage.deleteFavorite(index);
-    this.favorites = this.localStorage.getFavoriteObjects();
+    this.localStorageService.deleteFavorite(index);
+    this.favorites = this.localStorageService.getFavoriteObjects();
   }
+
 }

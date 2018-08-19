@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ErrorService} from '../services/error.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,36 +11,25 @@ import {ErrorService} from '../services/error.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  login = new Login();
+  username: string;
+  password: string;
 
-
-  constructor(private router: Router, private errorService: ErrorService) {
+  constructor(private _router: Router, private _errorService: ErrorService,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required)
-    });
+  }
 
-    this.loginForm.get('username').valueChanges.subscribe(value => {
-      console.log(value);
-    });
-    this.loginForm.get('password').statusChanges.subscribe(value => {
-      console.log(value);
-    });
+  checkUserNamePassword() {
+    this.auth.login(this.username, this.password);
 
   }
 
-  onSubmit() {
-    this.login.username = this.loginForm.get('username').value; // inny sposób pobrania danych
-    this.login.password = this.loginForm.value.password;
-    this.errorService.showSnackBar('Login incorrect', 'Please check your credetials');
+  checkKey(event) {
+    if (event.keyCode === 13) {
+      this.checkUserNamePassword();
+    }
   }
-}
 
-class Login {
-  constructor(public username?: string, public password?: string) {
-  }
 }

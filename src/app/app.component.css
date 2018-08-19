@@ -1,3 +1,7 @@
-.align-right{
-  flex: 1 1 auto;
+.align_to_right{
+    flex: 1 1 auto
+}
+
+.leftStyle{
+  width: 120px;
 }

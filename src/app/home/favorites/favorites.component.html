@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let favorite of favorites; let i=index;">
+  <mat-expansion-panel *ngFor="let favorite of favorites; let i=index">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <span mat-line>{{favorite.name}}</span>
@@ -10,7 +10,9 @@
     </mat-expansion-panel-header>
     <mat-action-row>
       <a href="{{favorite.url}}" target="_blank">{{favorite.url}}</a>
-      <button mat-icon-button (click)="deleteFavoriteRecord(i)"><mat-icon>delete</mat-icon></button>
+      <button mat-icon-button (click)="deleteFavoriteRecord(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

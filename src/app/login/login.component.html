@@ -1,38 +1,35 @@
-<div class="col-xs-12">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-card class="card-style">
-      <mat-card-header>
-        <mat-card-title>Authentication</mat-card-title>
-        <mat-card-subtitle>Please enter your username and password</mat-card-subtitle>
-      </mat-card-header>
+<p>
+  <mat-card class="card-style">
+    <mat-card-header>
+      <mat-card-title>Authentication</mat-card-title>
+      <mat-card-subtitle>Please enter your username and password</mat-card-subtitle>
+    </mat-card-header>
+    <div align="center">
+      <img mat-cardimage src="https://angular.io/assets/images/logos/angular/angular.svg" class="imagecardstyle"/>
+    </div>  
+    <mat-card-content>
       <div align="center">
-        <img mat-card-image
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/250px-Angular_full_color_logo.svg.png"
-             class="image-card-style">
+        <form (keypress)="checkKey($event)">
+        <mat-form-field>
+          <input matInput placeholder="username" [(ngModel)]="username" name="username">
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <input matInput placeholder="password" type="password" [(ngModel)]="password" name="password">
+        </mat-form-field>
+        </form>
       </div>
-      <mat-card-content>
-        <div align="center">
-          <mat-form-field>
-            <input matInput placeholder="username" id="username" type="text" formControlName="username">
-          </mat-form-field>
-          <div *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty">Pole wymagane!</div>
-          <br>
-          <mat-form-field>
-            <input matInput placeholder="password" id="password" type="password" formControlName="password">
-          </mat-form-field>
-          <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">Pole wymagane!</div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <div align="center">
-        <span matTooltip="Click here to check credentials">
-          <button type="submit" mat-button>
-          <mat-icon>check</mat-icon>
-        </button>
-        </span>
 
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </form>
-</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div align="center">
+        <span matTooltip="Click here to check credentials">
+            <button mat-button (click)="checkUserNamePassword()">
+                <mat-icon>check</mat-icon>
+              </button>
+        </span>
+        
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</p>
